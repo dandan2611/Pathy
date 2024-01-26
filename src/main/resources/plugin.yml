@@ -1,0 +1,12 @@
+name: Pathy
+version: '${version}'
+author: dandan2611
+
+main: fr.codinbox.pathy.PathyPlugin
+api-version: 1.19
+
+commands:
+  pathy:
+    description: Pathy
+    usage: /pathy
+    permission: pathy.admin
