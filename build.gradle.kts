@@ -8,7 +8,7 @@ plugins {
     id("io.papermc.paperweight.userdev") version "1.3.8"
 }
 
-group = "dev.dandan2611"
+group = "fr.codinbox"
 version = "1.0.0-SNAPSHOT"
 
 repositories {
