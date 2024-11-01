@@ -163,7 +163,7 @@ public class PathyCommand implements CommandExecutor {
         /*var x = location.getBlockX();
         var z = location.getBlockZ();
         location.add(0.5, 0.25, 0.5);*/
-        location.setY(location.getBlockY() + 0.25);
+        location = location.toCenterLocation();
         var path = editingSessions.get(sender.getUniqueId());
         path.getPoints().add(Pathy.PointBuilder.create()
                 .setLocation(location)

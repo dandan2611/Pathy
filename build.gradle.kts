@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "fr.codinbox"
-version = "1.0.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -63,9 +63,21 @@ tasks.processResources.configure {
     }
 }
 
-tasks.withType(JavaCompile::class).configureEach {
-    if (targetJavaVersion >= JavaVersion.VERSION_1_10 || JavaVersion.current().isJava10Compatible) {
-        options.release.set(targetJavaVersion.majorVersion.toInt())
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = "pathy"
+            from(components["java"])
+        }
     }
-    options.encoding = Charsets.UTF_8.name()
+    repositories {
+        mavenLocal()
+        maven("https://nexus.codinbox.fr/repository/maven-releases") {
+            credentials {
+                username = System.getenv("NEXUS_USERNAME") ?: findProperty("codinboxAuthUsername") as String?
+                password = System.getenv("NEXUS_PASSWORD") ?: findProperty("codinboxAuthPassword") as String?
+            }
+        }
+
+    }
 }
